@@ -1,14 +1,17 @@
+require "class"
 require "comp/pc"
 require "comp/platform"
 require "func/collisions"
 
 function love.load()
-	objects = {player}
+	objects = {}
+	player = pc:new()
+
+	table.insert(objects, player)
 	plats = {}
 	offset = 10
 	for i=0, 10, 2 do
-		p = platform:new{}
-		p.x = i * 100 + offset
+		p = platform:new(i * 100 + offset, 500, -1, 520, 400)
 		table.insert(plats, p)
 		offset = offset + 10
 	end
@@ -29,6 +32,11 @@ function love.update(dt)
 		if(not checkOnPlatforms(player, plats)) then
 			player.falling = true
 		end
+	end
+
+	player:update(dt)
+	for key, val in pairs(plats) do
+		val:update(dt)
 	end
 
 	if(player.jumping or player.falling) then
@@ -70,10 +78,10 @@ end
 
 function love.draw()
 	for key, val in pairs(objects) do
-		love.graphics.draw(val.img, val.x, val.y)
+		val:draw()
 	end
 	for key, val in pairs(plats) do
-		love.graphics.draw(val.img, val.x, val.y)
+		val:draw()
 	end
 	if(unsaturated) then
 		love.graphics.setColor(200,200,200,150)

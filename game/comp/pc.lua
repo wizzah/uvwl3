@@ -1,27 +1,43 @@
-player = {
-	img = love.graphics.newImage("img/test.png"),
-	x = 300,
-	y = 300,
-	width = 21,
-	height = 24,
-	moveSpeed = 100,
-	jumpSpeed = 150,
-	yVel = 0,
-	jumping = false,
-	falling = false,
-	currPlat = nil
-}
+pc = class:new()
 
---because lua can't parse "true" or "false" out of booleans
-function player:isJumping()
-	if(player.jumping) then
+function pc:init()
+	self.x = 300
+	self.y = 300
+
+	self.img = love.graphics.newImage("img/test.png")
+	
+	self.width = 21
+	self.height = 24
+
+	self.moveSpeed = 100
+	self.jumpSpeed = 150
+	self.yVel = 0
+
+	self.jumping = false
+	self.falling = false
+	self.currPlat = nil
+end
+
+function pc:update(dt)
+	if(self.currPlat) then
+		self.y = self.y + self.currPlat.moveSpeed * dt
+	end
+end
+
+function pc:draw()
+	love.graphics.draw(self.img, self.x, self.y)
+end
+
+--because lua can't parse strings out of booleans
+function pc:isJumping()
+	if(self.jumping) then
 		return "true"
 	else
 		return "false"
 	end
 end
-function player:isFalling()
-	if(player.falling) then
+function pc:isFalling()
+	if(self.falling) then
 		return "true"
 	else
 		return "false"
