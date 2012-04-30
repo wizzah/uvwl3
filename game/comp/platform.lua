@@ -1,4 +1,4 @@
-platform = class:new()
+platform = interactiveObject:new()
 
 function platform:init(x, y, dir, floor, ceil)
 	self.x = x
@@ -18,11 +18,11 @@ end
 
 function platform:update(dt)
 	self.y = self.y + self.moveSpeed * dt
-	if(self.y <= self.ceil or self.y >= self.floor) then
+	if(self.y < self.ceil) then
+		self.y = self.ceil
+		self.moveSpeed = self.moveSpeed * -1
+	elseif(self.y > self.floor) then
+		self.y = self.floor
 		self.moveSpeed = self.moveSpeed * -1
 	end
-end
-
-function platform:draw()
-	love.graphics.draw(self.img, self.x, self.y)
 end

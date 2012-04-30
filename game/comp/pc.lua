@@ -1,8 +1,8 @@
 pc = class:new()
 
-function pc:init()
-	self.x = 300
-	self.y = 300
+function pc:init(x, y)
+	self.x = x
+	self.y = y
 
 	self.img = love.graphics.newImage("img/test.png")
 	
@@ -14,7 +14,7 @@ function pc:init()
 	self.yVel = 0
 
 	self.jumping = false
-	self.falling = false
+	self.falling = true
 	self.currPlat = nil
 end
 

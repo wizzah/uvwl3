@@ -1,17 +1,20 @@
 require "class"
+require "comp/interactiveObject"
 require "comp/pc"
 require "comp/platform"
 require "func/collisions"
 
 function love.load()
 	objects = {}
-	player = pc:new()
+	player = pc:new(100, 100)
 
 	table.insert(objects, player)
 	plats = {}
 	offset = 10
-	for i=0, 10, 2 do
-		p = platform:new(i * 100 + offset, 500, -1, 520, 400)
+	for i=0, 15, 2 do
+		newYLoc = math.random(300, 500)
+		upOrDown = -0.5 + math.random()
+		p = platform:new(i * 75 + offset, newYLoc, upOrDown, 550, 250)
 		table.insert(plats, p)
 		offset = offset + 10
 	end
