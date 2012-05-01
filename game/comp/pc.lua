@@ -4,12 +4,13 @@ function pc:init(x, y)
 	self.x = x
 	self.y = y
 
-	--
-	--self.img = love.graphics.newImage("img/test.png")
-	self.img = love.graphics.newImage("img/testsheet.png")
 	
-	self.width = 21
-	self.height = 24
+	--self.img = love.graphics.newImage("img/test.png") --old and busted
+	--self.img = love.graphics.newImage("img/testsheet.png") --less busted
+	self.img = love.graphics.newImage("img/realsprites.png") --new hotness
+	
+	self.width = 42 --24
+	self.height = 126 --24
 
 	self.moveSpeed = 100
 	self.jumpSpeed = 150
@@ -19,10 +20,10 @@ function pc:init(x, y)
 	self.falling = true
 	self.currPlat = nil
 
-	self.spriteW = 24
-	self.spriteH = 24
-	self.imgW = 72
-	self.imgH = 48
+	self.spriteW = 42 --24
+	self.spriteH = 126 --24
+	self.imgW = 168 --72
+	self.imgH = 252 --48
 
 	self.quads = {
 		l = {
