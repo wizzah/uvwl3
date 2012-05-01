@@ -25,12 +25,14 @@ end
 
 function love.update(dt)
 	if(love.keyboard.isDown("right")) then
+		player.direction = "r"
 		player.x = player.x + player.moveSpeed * dt
 		if(not checkOnPlatforms(player, plats)) then
 			player.falling = true
 		end
 	end
 	if(love.keyboard.isDown("left")) then
+		player.direction = "l"
 		player.x = player.x - player.moveSpeed * dt
 		if(not checkOnPlatforms(player, plats)) then
 			player.falling = true
